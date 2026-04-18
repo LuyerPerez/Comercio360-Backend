@@ -1,0 +1,126 @@
+# 🏪 Sistema de Inventario y Facturación para Negocios de Barrio (Comercio360)
+
+## 📌 Descripción del Proyecto
+
+Este proyecto consiste en el desarrollo de un sistema de inventario orientado a negocios de barrio en Colombia, con el objetivo de facilitar la gestión de productos, ventas y control de stock.
+
+El sistema incorpora una arquitectura basada en APIs separadas, donde se desacopla la lógica del negocio de la facturación electrónica, permitiendo mayor escalabilidad y mantenibilidad.
+
+---
+
+## 🎯 Objetivo General
+
+Desarrollar un sistema web que permita a pequeños negocios gestionar su inventario y ventas, con la posibilidad de integrar facturación electrónica conforme a los requisitos en Colombia.
+
+---
+
+## 🧠 Arquitectura del Sistema
+
+El sistema está dividido en dos APIs principales:
+
+### 🟢 API de Inventario (Core)
+Encargada de la lógica del negocio:
+
+- Gestión de productos
+- Control de inventario
+- Registro de ventas
+- Gestión de clientes
+- Manejo de usuarios
+
+### 🔵 API de Facturación
+Encargada de:
+
+- Generación de facturas
+- Estructuración de datos (JSON/XML)
+- Preparación para integración con sistemas de facturación electrónica
+
+### ⚛️ Frontend
+Interfaz de usuario desarrollada en React para la interacción con el sistema.
+
+---
+
+## 🛠️ Tecnologías Utilizadas
+
+### Frontend
+- React
+- Vite
+- Tailwind CSS
+- Axios
+
+### Backend
+- Python
+- FastAPI
+- SQLAlchemy
+- Pydantic
+
+### Base de Datos
+- MySQL
+
+---
+
+## 📁 Estructura del Proyecto
+
+```bash
+project/
+│
+├── frontend/                # Aplicación React
+│
+├── backend/
+│   ├── inventory_api/      # API principal (core)  
+│   │   ├── models/
+│   │   ├── schemas/
+│   │   ├── routes/
+│   │   ├── services/
+│   │   └── main.py
+│   │
+│   ├── billing_api/     # API de facturación
+│   │   ├── routes/
+│   │   ├── services/
+│   │   └── main.py
+│   ├── database.py # Configuración compartida
+│   └── config.py
+│
+└── README.md
+```
+
+## ▶️ Comandos para Ejecutar las 2 APIs
+
+Desde la raiz del proyecto:
+
+```powershell
+cd backend
+python -m venv .venv
+.\.venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+Terminal 1 (API de Inventario):
+
+```powershell
+cd backend
+.\.venv\Scripts\activate
+uvicorn inventory_api.main:app --reload --port 8000
+```
+
+Terminal 2 (API de Facturacion):
+
+```powershell
+cd backend
+.\.venv\Scripts\activate
+uvicorn billing_api.main:app --reload --port 8001
+```
+
+Endpoints de salud:
+
+- Inventario: http://127.0.0.1:8000/health
+- Facturacion: http://127.0.0.1:8001/health
+
+## 📝 Reglas
+
+1. Todo el código debe escribirse en inglés (excepto los comentarios) usando snake_case para funciones y variables (ej. get_document_embeddings), y PascalCase para clases de modelos y esquemas (ej. ArticleCreate). Los nombres de los endpoints en FastAPI deben ser sustantivos en plural y seguir la jerarquía del recurso, por ejemplo, /api/articles/{article_id} en lugar de usar verbos como /get_article.
+
+2. Debes mantener una división estricta entre la lógica de negocio, el acceso a datos y la interfaz de la API para evitar el código "espagueti". En tu proyecto, la carpeta ia/ debe manejar exclusivamente el pipeline de RAG y ChromaDB, mientras que api/ solo gestiona las rutas de FastAPI; nunca realices consultas directas a la base de datos MySQL o realices procesamiento de texto pesado dentro de las funciones de los endpoints.
+
+3. Está prohibido devolver modelos de SQLAlchemy (MySQL) directamente en las respuestas de la API; en su lugar, utiliza siempre Schemas de Pydantic para definir qué datos entran y salen. Esto garantiza que información sensible, como los hashes de contraseñas de los empleados o metadatos internos de ChromaDB, nunca se expongan al frontend y permite que FastAPI genere documentación Swagger precisa automáticamente.
+
+4. Diseña tus endpoints para que sean apátridas (stateless), lo que significa que cada petición del empleado debe contener toda la información necesaria para ser procesada (usando tokens JWT para la autenticación).
