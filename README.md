@@ -95,17 +95,17 @@ pip install -r requirements.txt
 
 Terminal 1 (API de Inventario):
 
-```powershell
+```bash
 cd backend
-.\.venv\Scripts\activate
+source ./venv/Scripts/activate
 uvicorn inventory_api.main:app --reload --port 8000
 ```
 
 Terminal 2 (API de Facturacion):
 
-```powershell
+```bash
 cd backend
-.\.venv\Scripts\activate
+source ./venv/Scripts/activate
 uvicorn billing_api.main:app --reload --port 8001
 ```
 
