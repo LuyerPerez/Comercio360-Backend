@@ -64,7 +64,6 @@ Interfaz de usuario desarrollada en React para la interacción con el sistema.
 project/
 │
 ├── frontend/                # Aplicación React
-│
 ├── backend/
 │   ├── inventory_api/      # API principal (core)  
 │   │   ├── models/
