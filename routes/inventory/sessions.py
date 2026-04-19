@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from database import get_db
-from inventory_api.schemas.auth_schema import SessionCreate, TokenResponse
-from inventory_api.services.auth_service import create_access_token
-from inventory_api.services.user_service import authenticate_user
+from schemas.auth_schema import SessionCreate, TokenResponse
+from services.auth_service import create_access_token
+from services.user_service import authenticate_user
 
-router = APIRouter(prefix="/api/sessions", tags=["sessions"])
+router = APIRouter(prefix="/api/inventory/sessions", tags=["sessions"])
 
 @router.post("", response_model=TokenResponse, status_code=status.HTTP_201_CREATED)
 def create_session(session_data: SessionCreate, db: Session = Depends(get_db)) -> TokenResponse:

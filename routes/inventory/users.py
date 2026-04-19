@@ -2,11 +2,11 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy.orm import Session
 from database import get_db
-from inventory_api.services.auth_service import decode_access_token
-from inventory_api.schemas.user_schema import UserCreate, UserResponse
-from inventory_api.services.user_service import create_user, get_user_by_email, get_user_by_username
+from services.auth_service import decode_access_token
+from schemas.user_schema import UserCreate, UserResponse
+from services.user_service import create_user, get_user_by_email, get_user_by_username
 
-router = APIRouter(prefix="/api/users", tags=["users"])
+router = APIRouter(prefix="/api/inventory/users", tags=["users"])
 bearer_scheme = HTTPBearer(auto_error=False)
 
 def get_current_user(

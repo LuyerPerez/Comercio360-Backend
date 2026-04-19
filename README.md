@@ -16,23 +16,17 @@ Desarrollar un sistema web que permita a pequeños negocios gestionar su inventa
 
 ## 🧠 Arquitectura del Sistema
 
-El sistema está dividido en dos APIs principales:
+Por ahora, el sistema usa una **API unificada** para simplificar el desarrollo y el despliegue.
 
-### 🟢 API de Inventario (Core)
-Encargada de la lógica del negocio:
+### 🟢 API Unificada de Comercio360
+Encargada de:
 
 - Gestión de productos
 - Control de inventario
 - Registro de ventas
 - Gestión de clientes
 - Manejo de usuarios
-
-### 🔵 API de Facturación
-Encargada de:
-
-- Generación de facturas
-- Estructuración de datos (JSON/XML)
-- Preparación para integración con sistemas de facturación electrónica
+- Facturación y preparación para integración electrónica
 
 ### ⚛️ Frontend
 Interfaz de usuario desarrollada en React para la interacción con el sistema.
@@ -65,24 +59,18 @@ project/
 │
 ├── frontend/                # Aplicación React
 ├── backend/
-│   ├── inventory_api/      # API principal (core)  
-│   │   ├── models/
-│   │   ├── schemas/
-│   │   ├── routes/
-│   │   ├── services/
-│   │   └── main.py
-│   │
-│   ├── billing_api/     # API de facturación
-│   │   ├── routes/
-│   │   ├── services/
-│   │   └── main.py
-│   ├── database.py # Configuración compartida
+│   ├── models/
+│   ├── schemas/
+│   ├── routes/
+│   ├── services/
+│   ├── main.py
+│   ├── database.py         # Configuración compartida
 │   └── config.py
 │
 └── README.md
 ```
 
-## ▶️ Comandos para Ejecutar las 2 APIs
+## ▶️ Comando para Ejecutar la API Unificada
 
 Desde la raiz del proyecto:
 
@@ -91,28 +79,12 @@ cd backend
 python -m venv .venv
 .\.venv\Scripts\activate
 pip install -r requirements.txt
-```
-
-Terminal 1 (API de Inventario):
-
-```bash
-cd backend
-source ./venv/Scripts/activate
-uvicorn inventory_api.main:app --reload --port 8000
-```
-
-Terminal 2 (API de Facturacion):
-
-```bash
-cd backend
-source ./venv/Scripts/activate
-uvicorn billing_api.main:app --reload --port 8001
+uvicorn main:app --reload
 ```
 
 Endpoints de salud:
 
-- Inventario: http://127.0.0.1:8000/health
-- Facturacion: http://127.0.0.1:8001/health
+- API principal: http://127.0.0.1:8000/health
 
 ## 📝 Reglas
 

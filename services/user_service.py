@@ -1,8 +1,8 @@
 from datetime import datetime
 from sqlalchemy.orm import Session
-from inventory_api.models.user_model import User
-from inventory_api.schemas.user_schema import UserCreate
-from inventory_api.services.auth_service import hash_password, verify_password
+from models.user_model import User
+from schemas.user_schema import UserCreate
+from services.auth_service import hash_password, verify_password
 
 def get_user_by_email(db: Session, email: str) -> User | None:
     return db.query(User).filter(User.email == email).first()
