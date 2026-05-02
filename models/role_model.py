@@ -1,0 +1,8 @@
+from enum import Enum
+
+class UserRole(str, Enum):
+    OWNER = "owner"
+    ADMIN = "admin"
+    MANAGER = "manager"
+    CASHIER = "cashier"
+    STAFF = "staff"

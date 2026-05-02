@@ -5,9 +5,15 @@ from schemas.auth_schema import SessionCreate, TokenResponse
 from services.auth_service import create_access_token
 from services.user_service import authenticate_user
 
-router = APIRouter(prefix="/api/inventory/sessions", tags=["sessions"])
+router = APIRouter(prefix="/api/inventory/sessions", tags=["Inicio de sesion"])
 
-@router.post("", response_model=TokenResponse, status_code=status.HTTP_201_CREATED)
+@router.post(
+    "",
+    response_model=TokenResponse,
+    status_code=status.HTTP_201_CREATED,
+    summary="Iniciar sesion",
+    description="Autentica al usuario con email y password y retorna un token Bearer.",
+)
 def create_session(session_data: SessionCreate, db: Session = Depends(get_db)) -> TokenResponse:
     user = authenticate_user(db, session_data.email, session_data.password)
     if user is None:
