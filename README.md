@@ -4,7 +4,7 @@
 
 Este proyecto consiste en el desarrollo de un sistema de inventario orientado a negocios de barrio en Colombia, con el objetivo de facilitar la gestión de productos, ventas y control de stock.
 
-El sistema incorpora una arquitectura basada en APIs separadas, donde se desacopla la lógica del negocio de la facturación electrónica, permitiendo mayor escalabilidad y mantenibilidad.
+El sistema usa una API unificada con una estructura modular por dominios (usuarios, sesiones, inventario y facturacion), facilitando mantenimiento y evolucion del producto.
 
 ---
 
@@ -79,6 +79,7 @@ cd backend
 python -m venv venv
 source ./venv/Scripts/activate
 pip install -r requirements.txt
+pip install --upgrade pip
 uvicorn main:app --reload
 ```
 
