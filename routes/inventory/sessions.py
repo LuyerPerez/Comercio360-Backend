@@ -5,7 +5,7 @@ from schemas.auth_schema import SessionCreate, TokenResponse
 from services.auth_service import create_access_token
 from services.user_service import authenticate_user
 
-router = APIRouter(prefix="/api/inventory/sessions", tags=["Inicio de sesion"])
+router = APIRouter(prefix="/api/inventory/login", tags=["Inicio de sesion"])
 
 @router.post(
     "",

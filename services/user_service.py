@@ -33,20 +33,11 @@ def update_user(db: Session, user: User, user_data: UserUpdate) -> User:
     if user_data.firstname is not None:
         user.firstname = user_data.firstname
 
-    if user_data.secondname is not None:
-        user.secondname = user_data.secondname
-
     if user_data.firstlastname is not None:
         user.firstlastname = user_data.firstlastname
 
-    if user_data.secondlastname is not None:
-        user.secondlastname = user_data.secondlastname
-
     if user_data.email is not None:
         user.email = user_data.email.lower()
-
-    if user_data.phone is not None:
-        user.phone = user_data.phone
 
     if user_data.role is not None:
         user.role = user_data.role

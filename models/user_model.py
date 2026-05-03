@@ -13,7 +13,7 @@ class User(Base):
     firstlastname: Mapped[str] = mapped_column(String(100), nullable=False)
     secondlastname: Mapped[str | None] = mapped_column(String(100), nullable=True)
     email: Mapped[str] = mapped_column(String(255), unique=True, index=True, nullable=False)
-    phone: Mapped[str] = mapped_column(String(20), unique=True, index=True, nullable=False)
+    phone: Mapped[str | None] = mapped_column(String(20), unique=True, index=True, nullable=True)
     role: Mapped[UserRole] = mapped_column(
         SqlEnum(UserRole, name="user_role", native_enum=False),
         default=UserRole.STAFF,
@@ -22,10 +22,10 @@ class User(Base):
     password_hash: Mapped[str] = mapped_column(String(255), nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
     last_login_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
-    create_at: Mapped[datetime] = mapped_column(DateTime, default=datetime, nullable=False)
+    create_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, nullable=False)
     update_at: Mapped[datetime] = mapped_column(
         DateTime,
-        default=datetime,
-        onupdate=datetime,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow,
         nullable=False,
     )
