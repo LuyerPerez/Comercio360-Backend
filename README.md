@@ -38,7 +38,6 @@ Interfaz de usuario desarrollada en React para la interacción con el sistema.
 ### Frontend
 - React
 - Vite
-- Tailwind CSS
 - Axios
 
 ### Backend
